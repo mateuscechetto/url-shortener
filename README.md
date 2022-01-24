@@ -21,7 +21,7 @@ A URL shortener, like tinyURL, made as a coding test for a job
 
 
 ## Improvements to be added:
-The application was build with some limitations due to time constraint, here are some improvements that could be done:
+The application was built with some limitations due to time constraint, here are some improvements that could be done:
 - Adding a Cache, like [Redis](https://redis.io/), for faster access to data that is requested multiple times
 - Using NoSQL database, since this application has only 1 table and no relationships, and NoSQL databases performs better in reading queries 
 - Distributed System. It's coodination could be done with [Zookeeper](https://zookeeper.apache.org/) type of service; each Spring service would have a different range of url's that it could generate
