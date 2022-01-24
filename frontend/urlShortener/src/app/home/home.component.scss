@@ -1,0 +1,17 @@
+#main {
+    position: relative;
+    top:25%;
+    width: 100%;
+    margin: auto;
+    p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 50vw;
+    }
+    input{
+        min-width: 50vw;
+        max-width: 80vw;
+    }
+
+}

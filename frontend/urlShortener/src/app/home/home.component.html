@@ -1,0 +1,24 @@
+<div fxLayout="column" fxLayoutAlign="space-between center" id="main">
+  <mat-card fxLayout="column" fxLayoutAlign="space-between center">
+    <div fxLayout="row">
+      <input matInput type="text" #longUrl (keyup.enter)="createShort(longUrl.value)" >
+      <button mat-raised-button color="primary"  (click)="createShort(longUrl.value)" fxFlexOffset="5px">
+        Encurtar URL
+      </button>
+    </div>
+  <div *ngIf="shortUrl != ''" fxLayout="row" fxFlexOffset="15px">
+    <!-- <p>{{ fullUrl }}</p -->
+     <a [href]="sanitize(shortUrl)" target="_blank" fxFlexOffset="5px">{{ shortUrl }}</a> <button mat-raised-button color="primary" (click)="copyText(shortUrl)" fxFlexOffset="5px" fxFlexAlign="end"> Copiar</button>
+  </div> 
+</mat-card>
+  <!-- <div *ngIf="showOldUrls" fxLayout="column" fxLayoutAlign="space-between center">
+    Seus URL encurtados recentes: 
+    <div fxLayout="row" *ngFor="let url of oldUrls | keyvalue" fxFlexOffset="15px">
+      <mat-card>
+        <p>{{ url.key }}</p> <a href="{{ url.value}}" fxFlexOffset="5px">{{ url.value }}</a> <button mat-raised-button color="primary" (click)="copyText(shortUrl)" fxFlexOffset="5px"> Copiar</button>
+      </mat-card>
+    </div>
+    <button mat-raised-button color="primary"  (click)="clearOldUrls()">Limpar histórico</button>
+  </div> -->
+</div>
+  
