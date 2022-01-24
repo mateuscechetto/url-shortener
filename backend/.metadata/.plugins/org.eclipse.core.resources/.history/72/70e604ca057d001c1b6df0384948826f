@@ -1,0 +1,24 @@
+package com.zg.UrlShortener.service;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class UrlShortnerServiceTest {
+
+	@Test
+	void testGenerateShortUrl() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testPersistUrl() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetOriginalUrl() {
+		fail("Not yet implemented");
+	}
+
+}

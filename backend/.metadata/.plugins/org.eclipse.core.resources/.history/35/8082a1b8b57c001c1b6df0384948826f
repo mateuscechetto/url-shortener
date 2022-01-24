@@ -1,0 +1,46 @@
+package controller;
+
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.zg.UrlShortener.model.Url;
+import com.zg.UrlShortener.service.UrlShortnerService;
+
+@RestController
+public class UrlShortnerController {
+	
+	private final String frontEndUrl = "localhost:4200";
+	
+	@Autowired
+	private UrlShortnerService urlService;
+	
+	@PostMapping
+	public ResponseEntity<?> generateShortUrl(@RequestBody String originalUrl) {
+		Url url = urlService.generateShortUrl(originalUrl);
+		return new ResponseEntity<Url>(url, HttpStatus.OK);
+	}
+	
+	@GetMapping("/{shortUrl}")
+	public void redirectToOriginalUrl(HttpServletResponse response, @PathVariable String shortUrl) throws IOException {
+		Url urlToRedirect = urlService.getOriginalUrl(shortUrl);
+		if(urlToRedirect != null) {
+			response.sendRedirect(urlToRedirect.getOriginalUrl());
+		} else {
+			response.sendRedirect(frontEndUrl + "/" + shortUrl);
+		}
+		
+		
+		
+	}
+
+}

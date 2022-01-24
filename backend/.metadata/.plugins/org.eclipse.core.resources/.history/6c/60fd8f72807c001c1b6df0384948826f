@@ -1,0 +1,5 @@
+package com.zg.UrlShortener.model;
+
+public class Url {
+
+}

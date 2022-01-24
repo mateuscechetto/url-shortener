@@ -1,0 +1,54 @@
+package com.zg.UrlShortener.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.zg.UrlShortener.model.Url;
+
+import repository.UrlRepository;
+
+@Component
+public class UrlShortnerService {
+	
+	private int currentID;
+	
+	@Autowired
+	private UrlRepository urlRepository;
+
+	public Url generateShortUrl(String originalUrl) {
+		
+		String shortUrl = encodeUrl(currentID);
+		Url urlToPersist = new Url(currentID, originalUrl, shortUrl);
+		Url persistedUrl = persistShortUrl(urlToPersist);
+		currentID++;
+		return persistedUrl;
+	}
+	
+	
+	public Url persistShortUrl(Url url) {
+		if(urlRepository.findById(url.getId()) == null) {
+			Url persistedUrl = urlRepository.save(url);
+			return persistedUrl;
+		} else {
+			currentID++;
+			Url newUrl = new Url(currentID, url.getOriginalUrl(), url.getShortUrl());
+			return persistShortUrl(newUrl);
+		}
+		
+	}
+	
+	public Url getOriginalUrl(String url) {
+		return urlRepository.findByShortUrl(url);
+		
+	}
+	
+	private String encodeUrl(int counter) {
+		final char[] charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+		StringBuilder shortUrl = new StringBuilder();
+		while(counter > 0) {
+			shortUrl.append(charSet[counter % 62]);
+			counter = counter / 62;
+		}
+		return shortUrl.toString();
+	}
+}

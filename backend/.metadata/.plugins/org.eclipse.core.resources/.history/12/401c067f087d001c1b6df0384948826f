@@ -1,0 +1,65 @@
+package com.zg.UrlShortener.service;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import com.zg.UrlShortner.repository.UrlRepository;
+
+@ExtendWith(MockitoExtension.class)
+class UrlShortnerServiceTest {
+	
+	@Mock
+	private UrlRepository urlRepository;
+	private UrlShortnerService underTest;
+	
+	@BeforeEach
+	void setUp() {
+		underTest = new UrlShortnerService(urlRepository);
+	}
+
+	@Test
+	@Disabled
+	void testGenerateShortUrl() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	@Disabled
+	void testPersistUrl() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	@Disabled
+	void testGetOriginalUrl() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testEncode() {
+		int id = 2123129;
+		
+		String result = underTest.encodeUrl(id);
+		String expected = "8Uk1";
+		
+		assertThat(result).isEqualTo(expected);
+	}
+	
+	@Test
+	void testDecode() {
+		String url = "fG18A";
+		
+		int result = underTest.decodeUrl(url);
+		int expected = 231659192;
+		
+		assertThat(result).isEqualTo(expected);
+	}
+
+}

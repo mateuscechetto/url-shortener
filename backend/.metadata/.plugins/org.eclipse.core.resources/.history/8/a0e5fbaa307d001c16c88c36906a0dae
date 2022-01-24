@@ -1,0 +1,54 @@
+package com.zg.UrlShortener.controller;
+
+import java.io.IOException;
+
+import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.zg.UrlShortener.model.UrlDto;
+import com.zg.UrlShortener.service.UrlShortnerService;
+
+@RestController
+public class UrlShortnerController {
+	
+	private final String frontEndUrl = "localhost:4200";
+	private final String backEndUrl = "localhost:8080";
+	
+	private UrlShortnerService urlService;
+	
+	@Autowired
+	public UrlShortnerController(UrlShortnerService urlService) {
+		this.urlService = urlService;
+	}
+	
+	@PostMapping()
+	public ResponseEntity<?> generateShortUrl(@RequestBody UrlDto urlDto) {
+		String url = urlService.generateShortUrl(urlDto.getUrl());
+		return new ResponseEntity<String>(backEndUrl + "/" +  url, HttpStatus.OK);
+	}
+	
+	@GetMapping("/{shortUrl}")
+	public void redirectToOriginalUrl(HttpServletResponse response, @PathVariable String shortUrl) throws IOException {
+		try {
+			String urlToRedirect = urlService.getOriginalUrl(shortUrl);
+			System.out.println("redirected to site");
+			response.sendRedirect(urlToRedirect);
+		} catch(EntityNotFoundException e) {
+			System.out.println("redirected to front");
+			response.sendRedirect(frontEndUrl + "/" + shortUrl);
+		}
+		
+	}
+
+}
