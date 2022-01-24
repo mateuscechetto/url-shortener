@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
       {
         next: (res) => {
           this.shortUrl = res;
-          this.localStorageService.set(longUrl, this.shortUrl);
+          this.localStorageService.set(this.shortUrl, longUrl);
           this.oldUrls = this.localStorageService.getAll();
           if(Object.keys(this.oldUrls).length > 1) {
             this.showOldUrls = true;

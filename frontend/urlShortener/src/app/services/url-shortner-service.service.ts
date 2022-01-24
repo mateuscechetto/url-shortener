@@ -12,7 +12,6 @@ export class UrlShortnerServiceService {
   constructor(private http: HttpClient) { }
 
   public createShort(fullUrl:string) {
-    //return of("AnYYod");
     let urlDto: UrlDto = {
       url: fullUrl
     }
