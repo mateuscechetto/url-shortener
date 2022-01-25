@@ -16,7 +16,7 @@
     Seus URL encurtados recentes: 
     <div fxLayout="row" *ngFor="let url of oldUrls | keyvalue" fxFlexOffset="15px">
       <mat-card>
-        <p>{{ url.key }}</p> <a href="{{ url.value}}" fxFlexOffset="5px">{{ url.value }}</a> <button mat-raised-button color="primary" (click)="copyText(shortUrl)" fxFlexOffset="5px"> Copiar</button>
+        <p>{{ url.value }}</p> <a href="{{ url.key}}" fxFlexOffset="5px">{{ url.key }}</a> <button mat-raised-button color="primary" (click)="copyText(shortUrl)" fxFlexOffset="5px"> Copiar</button>
       </mat-card>
     </div>
     <button mat-raised-button color="primary"  (click)="clearOldUrls()">Limpar histórico</button>
