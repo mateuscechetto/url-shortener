@@ -1,7 +1,11 @@
 # url-shortener
 A URL shortener, like tinyURL, made as a coding test for a job
 
-![screenshot of the front-end](https://cdn.discordapp.com/attachments/410766471052918786/935248009418133535/unknown.png)
+![gif of the front-end](https://im5.ezgif.com/tmp/ezgif-5-b3cc32e5c8.gif)
+
+## Technologies
+- **Back-end**: Java, Spring Boot and Postgres
+- **Front-end**: Angular and Angular Material
 
  ## Requirements 
 - The site must allow users to short an original URL and generate a unique code with 5 or less characters
@@ -12,9 +16,9 @@ A URL shortener, like tinyURL, made as a coding test for a job
 - No authentication is needed
 - The front-end layout must be clean and easy to use
 
-## Technologies
-- **Back-end**: Java, Spring Boot and Postgres
-- **Front-end**: Angular and Angular Material
+Extra feature: it also saves (using local storage) the last url shortened.
+
+![url history screenshot](https://cdn.discordapp.com/attachments/410766471052918786/1014603649571369020/unknown.png)
 
 ## Architecture
 ![Architecture Diagram](https://cdn.discordapp.com/attachments/410766471052918786/935251257159974982/unknown.png)
