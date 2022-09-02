@@ -1,7 +1,7 @@
 # url-shortener
 A URL shortener, like tinyURL, made as a coding test for a job
 
-![gif of the front-end](https://im5.ezgif.com/tmp/ezgif-5-b3cc32e5c8.gif)
+![gif of the front-end](https://cdn.discordapp.com/attachments/410766471052918786/1015244276952727632/urlShortenerGif.gif)
 
 ## Technologies
 - **Back-end**: Java, Spring Boot and Postgres
